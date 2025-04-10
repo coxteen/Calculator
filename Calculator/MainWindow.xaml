@@ -1,0 +1,172 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Calculator" Height="600" Width="400"
+        ResizeMode="NoResize">
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#f26a8d"/>
+            <Setter Property="Foreground" Value="#880d1e"/>
+            <Setter Property="FontSize" Value="23"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Command" Value="{Binding Path=buttonPressedCommand}"/>
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="NumPad0" Command="{Binding buttonPressedCommand}" CommandParameter="0"/>
+        <KeyBinding Key="NumPad1" Command="{Binding buttonPressedCommand}" CommandParameter="1"/>
+        <KeyBinding Key="NumPad2" Command="{Binding buttonPressedCommand}" CommandParameter="2"/>
+        <KeyBinding Key="NumPad3" Command="{Binding buttonPressedCommand}" CommandParameter="3"/>
+        <KeyBinding Key="NumPad4" Command="{Binding buttonPressedCommand}" CommandParameter="4"/>
+        <KeyBinding Key="NumPad5" Command="{Binding buttonPressedCommand}" CommandParameter="5"/>
+        <KeyBinding Key="NumPad6" Command="{Binding buttonPressedCommand}" CommandParameter="6"/>
+        <KeyBinding Key="NumPad7" Command="{Binding buttonPressedCommand}" CommandParameter="7"/>
+        <KeyBinding Key="NumPad8" Command="{Binding buttonPressedCommand}" CommandParameter="8"/>
+        <KeyBinding Key="NumPad9" Command="{Binding buttonPressedCommand}" CommandParameter="9"/>
+        <KeyBinding Key="Decimal" Command="{Binding buttonPressedCommand}" CommandParameter="." />
+
+        <KeyBinding Key="Add" Command="{Binding buttonPressedCommand}" CommandParameter="+"/>
+        <KeyBinding Key="Subtract" Command="{Binding buttonPressedCommand}" CommandParameter="-"/>
+        <KeyBinding Key="Multiply" Command="{Binding buttonPressedCommand}" CommandParameter="*"/>
+        <KeyBinding Key="Divide" Command="{Binding buttonPressedCommand}" CommandParameter="/"/>
+
+        <KeyBinding Key="Return" Command="{Binding buttonPressedCommand}" CommandParameter="="/>
+        <KeyBinding Key="Escape" Command="{Binding buttonPressedCommand}" CommandParameter="C"/>
+    </Window.InputBindings>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Options">
+                <MenuItem Header="About" Click="About_Click"/>
+                <MenuItem Header="Digit Grouping" IsCheckable="True" IsChecked="{Binding DigitGrouping}" Click="DigitGrouping_Click"/>
+                <MenuItem Header="Programmer" IsCheckable="True" IsChecked="{Binding Programmer}" Click="Programmer_Click"/>
+                <MenuItem Header="Operation Priority" IsCheckable="True" IsChecked="{Binding OperationPriority}" Click="OperationPriority_Click"/>
+                <MenuItem Header="Base for Calculations" Click="BaseForCalculations_Click"/>
+                <MenuItem Header="Cut" Command="{Binding buttonPressedCommand}" CommandParameter="Cut"/>
+                <MenuItem Header="Copy" Command="{Binding buttonPressedCommand}" CommandParameter="Copy"/>
+                <MenuItem Header="Paste" Command="{Binding buttonPressedCommand}" CommandParameter="Paste"/>
+            </MenuItem>
+        </Menu>
+
+
+        <Grid Background="#880d1e">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding Path=KeyPressedString}" 
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right"
+                       FontSize="15"
+                       FontWeight="Bold"
+                       Foreground="#cbeef3"/>
+
+            <TextBlock Text="{Binding Path=EnteredNumber}"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Grid.Row="1"
+                       Foreground="#cbeef3"/>
+
+            <Grid Grid.Row="2" Background="#dd2d4a">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Grid.Row="1" Content="MC" CommandParameter="MC"/>
+                <Button Grid.Column="3" Grid.Row="1" Content="MR" CommandParameter="MR"/>
+                <Button Grid.Column="5" Grid.Row="1" Content="M+" CommandParameter="M+"/>
+                <Button Grid.Column="7" Grid.Row="1" Content="M-" CommandParameter="M-"/>
+                <Button Grid.Column="9" Grid.Row="1" Content="MS" CommandParameter="MS"/>
+                <Button Grid.Column="11" Grid.Row="1" Content="M" CommandParameter="M"/>
+            </Grid>
+
+            <Grid Grid.Row="3" Background="#dd2d4a">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Grid.Row="1" Content="%" CommandParameter="%"/>
+                <Button Grid.Column="3" Grid.Row="1" Content="CE" CommandParameter="CE"/>
+                <Button Grid.Column="5" Grid.Row="1" Content="C" CommandParameter="C"/>
+                <Button Grid.Column="7" Grid.Row="1" Content="E" CommandParameter="E"/>
+
+                <Button Grid.Column="1" Grid.Row="3" Content="1/x" CommandParameter="1/x"/>
+                <Button Grid.Column="3" Grid.Row="3" Content="x^2" CommandParameter="x^2"/>
+                <Button Grid.Column="5" Grid.Row="3" Content="sqrt(x)" CommandParameter="sqrt(x)"/>
+                <Button Grid.Column="7" Grid.Row="3" Content="/" CommandParameter="/"/>
+
+                <Button Grid.Column="1" Grid.Row="5" Content="7" CommandParameter="7"/>
+                <Button Grid.Column="3" Grid.Row="5" Content="8" CommandParameter="8"/>
+                <Button Grid.Column="5" Grid.Row="5" Content="9" CommandParameter="9"/>
+                <Button Grid.Column="7" Grid.Row="5" Content="*" CommandParameter="*"/>
+
+                <Button Grid.Column="1" Grid.Row="7" Content="4" CommandParameter="4"/>
+                <Button Grid.Column="3" Grid.Row="7" Content="5" CommandParameter="5"/>
+                <Button Grid.Column="5" Grid.Row="7" Content="6" CommandParameter="6"/>
+                <Button Grid.Column="7" Grid.Row="7" Content="-" CommandParameter="-"/>
+
+                <Button Grid.Column="1" Grid.Row="9" Content="1" CommandParameter="1"/>
+                <Button Grid.Column="3" Grid.Row="9" Content="2" CommandParameter="2"/>
+                <Button Grid.Column="5" Grid.Row="9" Content="3" CommandParameter="3"/>
+                <Button Grid.Column="7" Grid.Row="9" Content="+" CommandParameter="+"/>
+
+                <Button Grid.Column="1" Grid.Row="11" Content="+/-" CommandParameter="+/-"/>
+                <Button Grid.Column="3" Grid.Row="11" Content="0" CommandParameter="0"/>
+                <Button Grid.Column="5" Grid.Row="11" Content="." CommandParameter="."/>
+                <Button Grid.Column="7" Grid.Row="11" Content="=" CommandParameter="="/>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

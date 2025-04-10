@@ -1,0 +1,11 @@
+﻿<Window x:Class="Calculator.MemoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Memory" Height="300" Width="200">
+    <Grid>
+        <!-- ListBox displays each memory value. When an item is selected, we close the window. -->
+        <ListBox x:Name="MemoryListBox" DisplayMemberPath="." 
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                 SelectionChanged="MemoryListBox_SelectionChanged"/>
+    </Grid>
+</Window>
